@@ -1,0 +1,36 @@
+body {
+    padding: 0 10px;
+}
+
+input {
+    padding: 0.5rem;
+    font-size: 14px;
+}
+
+#writing-area {
+    border: 1px solid gray;
+    border-radius: 3.2px;
+    padding: 10px;
+    min-height: 50vh;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.border-secondary {
+    border-color: #6c757d;
+}
+
+.border-right-0 {
+    border-right: 0;
+}
+
+.border-radius-left {
+    border-radius: 3.2px 0 0 3.2px;
+}
+
+.border-width-1 {
+    border-width: 1px;
+    border-style: solid;
+}

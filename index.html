@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Docs</title>       
+        <!-- Bootstrap -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <!-- Custom styles -->
+        <link href="style.css" rel="stylesheet">
+        <link rel="stylesheet" media="print" href="print.css">
+    </head>
+    <body>
+        <header>
+            <h1 class="mb-3 mt-2">My Docs</h1>
+            <div class="inline-block mb-2">
+                <button onclick="controls.save()" class="btn btn-primary btn-sm">Save</button>
+                <button onclick="controls.print()" class="btn btn-outline-secondary btn-sm">Print</button>
+            </div>
+            <div class="btn-toolbar mb-2" role="toolbar" aria-label="Edit toolbar">
+                <div class="btn-group mr-2" role="group" aria-label="Actions">
+                    <button onclick="controls.undo()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-undo-alt" title="Undo"></i>
+                    </button>
+                    <button onclick="controls.redo()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-redo-alt" title="Redo"></i>
+                    </button>
+                    <button onclick="controls.clear()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-eraser" title="Clear text"></i>
+                    </button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Clipboard">
+                    <button onclick="controls.cut()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-cut" title="Cut"></i>
+                    </button>
+                    <button onclick="controls.copy()" class="btn btn-outline-secondary btn-sm">
+                        <i class="far fa-copy" title="Copy"></i>
+                    </button>
+                    <button onclick="controls.paste()" class="btn btn-outline-secondary btn-sm">
+                        <i class="far fa-clipboard" title="Paste"></i>
+                    </button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Lists">
+                    <button onclick="controls.insertOrderedList()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-list-ol" title="Insert numbered list"></i>
+                    </button>
+                    <button onclick="controls.insertUnorderedList()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-list-ul" title="Insert bulleted list"></i>
+                    </button>
+                </div>
+                <button onclick="controls.insertLine()" class="btn btn-outline-secondary btn-sm mr-2">
+                    <i class="far fa-window-minimize" title="Insert line"></i>
+                </button>
+                <div class="btn-group mr-2" role="group" aria-label="Image">
+                    <input name="imageUrl" class="border-secondary border-width-1 border-right-0 border-radius-left" placeholder="Enter image URL" type="url">
+                    <button onclick="controls.insertImage()" class="btn btn-outline-secondary btn-sm">
+                        <i class="far fa-image" title="Insert Image"></i>
+                    </button>
+                </div>
+                <div class="btn-group mr-2" role="group" aria-label="Hyperlink">
+                    <input name="url" class="border-secondary border-width-1 border-right-0 border-radius-left" placeholder="Enter hyperlink URL" type="url">
+                    <button onclick="controls.hyperlink()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-link" title="Hyperlink"></i>
+                    </button>
+                    <button onclick="controls.unlink()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-unlink" title="Unlink"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="btn-toolbar mb-2" role="toolbar" aria-label="Formatting toolbar">
+                <div class="text-format actions btn-group mr-2" role="group" aria-label="Actions">
+                    <button onclick="controls.bold()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-bold" title="Bold"></i>
+                    </button>
+                    <button onclick="controls.italicize()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-italic" title="Italicize"></i>
+                    </button>
+                    <button onclick="controls.underline()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-underline" title="Underline"></i>
+                    </button>
+                    <button onclick="controls.strikethrough()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-strikethrough" title="Strikethrough"></i>
+                    </button>
+                    <button onclick="controls.subscript()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-subscript" title="Subscript"></i>
+                    </button>
+                    <button onclick="controls.superscript()" class="btn btn-outline-secondary btn-sm">
+                        <i class="fas fa-superscript" title="Superscript"></i>
+                    </button>
+                </div>
+                <div class="inline-block ml-1 mr-2" title="Font family">
+                    <i class="fas fa-font text-secondary"></i>
+                    <div class="inline-block">
+                        <select class="form-control form-control-sm border-secondary" id="font-family" onchange="controls.setFontFamily()">
+                            <option value="Times New Roman">Times New Roman</option>
+                            <option value="Arial">Arial</option>
+                            <option value="Courier">Courier</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-block ml-1 mr-2" title="Font size">
+                    <i class="fas fa-text-height text-secondary"></i>
+                    <div class="inline-block">
+                        <select class="form-control form-control-sm border-secondary" id="size" onchange="controls.setFontSize()">
+                            <option value="8">8</option>
+                            <option value="10">10</option>
+                            <option value="12">12</option>
+                            <option value="14">14</option>
+                            <option value="16">16</option>
+                            <option value="18">18</option>
+                            <option value="20">20</option>
+                            <option value="22">22</option>
+                            <option value="24">24</option>
+                            <option value="26">26</option>
+                            <option value="28">28</option>
+                            <option value="32">32</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-block ml-1 mr-2" title="Text color">
+                    <i class="fas fa-fill-drip text-secondary"></i>
+                    <div class="inline-block">
+                        <select class="form-control form-control-sm border-secondary" id="color" onchange="controls.setFontColor()">
+                            <option value="black">Black</option>
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>
+                            <option value="yellow">Yellow</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-block ml-1 mr-2" title="Highlight color">
+                    <i class="fas fa-highlighter text-secondary"></i>
+                    <div class="inline-block">
+                        <select class="form-control form-control-sm border-secondary" id="background-color" onchange="controls.setBackgroundColor()">
+                            <option value="white">White</option>
+                            <option value="red">Red</option>
+                            <option value="blue">Blue</option>
+                            <option value="green">Green</option>
+                            <option value="yellow">Yellow</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="inline-block ml-1 mr-2" title="Justify">
+                    <i class="fas fa-align-left text-secondary"></i>
+                    <div class="inline-block">
+                        <select class="form-control form-control-sm border-secondary" id="justify" onchange="controls.justify()">
+                            <option value="Left">Left</option>
+                            <option value="Center">Center</option>
+                            <option value="Right">Right</option>
+                            <option value="Full">Full</option>
+                        </select>
+                    </div>
+                </div>
+                <button onclick="controls.reset()" class="btn btn-outline-secondary btn-sm">
+                    <i class="fas fa-ban" title="Clear formatting"></i>
+                </button>
+            </div>
+        </header>
+        <main>
+            <p id="writing-area" contenteditable="true">Write something here...</p>
+        </main>
+        <script src="script.js"></script>
+    </body>
+</html>
