@@ -1,5 +1,5 @@
 # My Docs
-A simple word editor created during a front-end development workshop.
+A simple word editor I created during a front-end development workshop.
 
 ## Bugs to be fixed:
 - Pasting doesn't work
